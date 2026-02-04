@@ -1,8 +1,8 @@
 package com.taskflow.demo.entity;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tasks")
 public class Task {
 
     @Id
@@ -11,18 +11,23 @@ public class Task {
 
     private String title;
     private String description;
-    private String status;
+    private boolean completed;
 
-    public Task() {}
+    private String userEmail; // extracted from JWT
 
+    // getters & setters
     public Long getId() { return id; }
-    public String getTitle() { return title; }
-    public String getDescription() { return description; }
-    public String getStatus() { return status; }
-
     public void setId(Long id) { this.id = id; }
-    public void setTitle(String title) { this.title = title; }
-    public void setDescription(String description) { this.description = description; }
-    public void setStatus(String status) { this.status = status; }
-}
 
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public boolean isCompleted() { return completed; }
+    public void setCompleted(boolean completed) { this.completed = completed; }
+
+    public String getUserEmail() { return userEmail; }
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+}
