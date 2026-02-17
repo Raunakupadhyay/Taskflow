@@ -1,8 +1,10 @@
 package com.taskflow.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
 
     @Id
@@ -11,11 +13,16 @@ public class Task {
 
     private String title;
     private String description;
-    private boolean completed;
 
-    private String userEmail; // extracted from JWT
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+    public Task() {}
 
     // getters & setters
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -25,9 +32,6 @@ public class Task {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public boolean isCompleted() { return completed; }
-    public void setCompleted(boolean completed) { this.completed = completed; }
-
-    public String getUserEmail() { return userEmail; }
-    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }
