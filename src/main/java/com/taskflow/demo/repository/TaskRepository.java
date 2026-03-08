@@ -9,7 +9,10 @@ import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
+    // 🔥 Get all tasks of specific user
     List<Task> findByUser(User user);
 
+    // 🔥 Find task by id AND user (for update/delete security)
     Optional<Task> findByIdAndUser(Long id, User user);
+
 }
